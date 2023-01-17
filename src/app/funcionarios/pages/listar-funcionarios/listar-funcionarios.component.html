@@ -1,0 +1,60 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <aside id="lateral">
+    <h2>Funcionários</h2>
+  </aside>
+  <main>
+    <button mat-mini-fab color="accent" (click)="abrirFormFuncionario()" id="add">
+      <mat-icon>add</mat-icon>
+      <!--botão qundo clicar abrir form-funcionario mat-mini botão redondo add mat-icon + -->
+    </button>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+    <table mat-table [dataSource]="funcionarios" class="mat-elevation-z8">
+      <ng-container matColumnDef="id"> <!--item definido no array do ts-->
+        <th mat-header-cell *matHeaderCellDef>#</th>
+        <td mat-cell *matCellDef="let f">{{ f.idFuncionario }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef>Nome</th> <!--texto que vai aparecer p usuario-->
+        <td mat-cell *matCellDef="let f">
+          <a [routerLink]="'/funcionarios/' + f.idFuncionario" routerLinkActive="ativo">
+            {{ f.nome }} <!--atentar as aspas inserido tag a com routerlink -->
+          </a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>E-mail</th>
+        <td mat-cell *matCellDef="let f">{{ f.email }}</td>
+      </ng-container>
+       <!--ng container é cada coluna-->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Excluir</th>
+        <td mat-cell *matCellDef="let f">
+          <button mat-icon-button color="warn" (click)="deletarFuncionario(f)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+      <tr mat-row *matRowDef="let row; columns: colunas"></tr>
+    </table>
+  </main>
+</div>
+
+<!-- foi a primeira tabela criada table foi utilizada a diretiva mat-table foi colocado atibuto [dataSource] funcionarios o  array declarado no ts, ng container criou as colunas o matcolundef onde define o mome do item da coluna, -->
+
+<!--let f criada a variavel representa cada funcionario com seus dados, quando redenrizar é que vai aparecer para isso utilizado o interpolação {f.email/idfuncionario,nome essa variável mesma acão do ngFor neste caso é table }, foi feito os ng container com id,nome e email, depois disso icluido tr para definir as colunas na segunda linha foi criado a variavel let row;  -->
+
+<!--foi incluido mais um ng container actions com a função  de exluir  warn cor vermelha e no mat icons delete a lixeira-->
+
+<!--foi criado o componente funcionario que neste caso é uma subrota do listarfuncionario , a sua rota foi inclusa funcionario.routing.module.ts como children foi então inserido uma div e colocado a tag router-outlet sem essa tag a subrota não aparece no navegador a tag coloca onde vc quer que apareça para acessar esta subrota a tag a com propet bynd [routetlink] quando clicar no nome do funcionario ir para essa subrota o atributo routerLinkActive= ativo quando clicar fica vermelho classe ativo no css cor red-->
+
+
+
+
+

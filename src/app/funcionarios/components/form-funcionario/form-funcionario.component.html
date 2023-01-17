@@ -1,0 +1,66 @@
+ <!-- 2 formulario para salvar funcionario e foto  -->
+<div>
+  <h2 mat-dialog-title>Novo Funcionário</h2>
+  <mat-spinner color="accent" mode="indeterminate" diameter="20" *ngIf="salvandoFuncionario"></mat-spinner>
+
+</div>
+
+<section mat-dialog-content>
+  <form action="" [formGroup]="formFuncionario" (ngSubmit)="salvar()">
+    <img [src]="fotoPreview" alt="" *ngIf="fotoPreview.length > 0">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Nome</mat-label>
+      <input
+        type="text"
+        placeholder="Ex: João Pedro"      
+        matInput
+        formControlName="nome" 
+        
+      >
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>E-mail</mat-label>
+      <input
+        type="email"
+        placeholder="Ex: seuemail@mail.com"
+        matInput
+        formControlName="email"
+      >
+      <!-- formControlName 2 passo email e outro nome faz parte do FormGoup -->
+    </mat-form-field>
+   <!--campo input de inserção de imagem-->
+    <input
+      type="file"
+      accept="image/*"
+      id="file-input"
+      #fileInput
+      (change)="recuperarFoto($event)"
+      formControlName ="foto"
+    >
+    <button
+      type="button"
+      mat-stroked-button 
+      color="primary"
+      (click)="fileInput.click()"
+    >Selecione uma imagem</button>
+
+    <button type="submit" [disabled]="formFuncionario.invalid" mat-raised-button color="accent" id="salvar">Salvar</button>
+  </form>
+</section>
+
+<!--inicialmente foi inserido mat dialog como Novo Funcionario criado section mat-dialog contente mat form-field com nome e e-mail depois foi no componente/page listar -funcionario para que este card aparece na página de listar-funcionario, ir em listar-funcionario.ts e injetar o matdialog criada a função abrirFormFuncionario -->
+
+<!--buton mat-stroked-buton sem cor de fundo, foi criado a váriável de template #fileInput para imagem, no botão abaixo chamou esta variavel de template quando clicar vai aparecer o campo para selecioanar a foto foi criado o id file-input no css está como none ,depois foi listar-funcionarios para criação do botão quando clicar abrir este formulário--->
+
+<!--foi necessário importar no funcionario.module o reactiveFormsModule, no ts foi inserido no constuctor formBuilder e criado a varivável  formFuncionario:FormGroup = this.fb.group({
+    nome:['' , [ Validators.required ]],
+    email: ['', [ Validators.required, Validators.email ]], inicialmente só nome e email aqui no html foi feito o link na tag form action inserido a diretiva [formGroup] propetBynd = formFuncionario e depois no nome e email inserido formControlName e descrimina de qual item se refere no caso nome e no email  -->
+
+    <!-- no ts foi criado a função recuperarfoto  e aqui no input foi incluido (chance)chamou a função recuperarfoto mais $event -->
+
+
+    <!-- <img [src]="fotoPreview" alt="" *ngIf="fotoPreview.length > 0"> utilizado para aparecer a imagem na tela ngIf se a condição for verdadeira vai aparecer o item na tela, neste caso se quantidade de caracteres for mao que 0 -->
+
+   <!-- <button type="submit" [disabled]="formFuncionario.invalid" mat-raised-button  invalid se o formFuncionario tiver invalido o botão vai ficar desBILITADO --> 

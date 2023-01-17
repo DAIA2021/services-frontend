@@ -1,0 +1,8 @@
+mat-toolbar-row {
+    display: flex;
+    align-items: center;
+  }
+  
+  .separador {
+    flex-grow: 1;  /* vai fazer com  que o elemento cresça horizontal espalhou os dois elementos*/
+  }

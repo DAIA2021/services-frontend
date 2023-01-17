@@ -6,8 +6,103 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
   <app-root></app-root>
 </body>
-</html>
+</html>  
+
+<!--continuar na aula do dia 30 baixar, aitvidade de fazer formulário aula do dia 01 do 30 não tem aula 2 -->
+
+  <!-- uso de ! em classe a propriedade pode ficar fazia por um tempo ex nome! : string e exclamação nas interfaces ex id?  -->
+<!-- 
+  1- foi criado o componente material n g m material,no material module ts, apagar tudo que no modulo e colar os imports do arquivo do Renato;
+  2-foi criado o modulo n g m funcionarios --routing ele tem rota secundária de roteamento rotas do funcionarios (funcionarios-routing.modulo.ts e funcionarios.module.ts)
+  3-foi criado o componente(pagina do site) listar-funcionarios dentro da pasta funcionarios/da pasta pages  com o comando ng g c , quando foi criado este componente automaticamente ele foi importado no declarations ListarFuncionariosComponent ;
+  necessário criar a rota para acessar este componente, ir no funcionarios-routing.module.ts e criar a rota , cada rota é um objeto const routes: Routes = [
+{
+  path:'',
+  component:ListarFuncionariosComponent,
+
+  4-depois ir no app-routing.modules fazer a configuração para utilizar o modulo secundário criar a Rota ,
+   {
+    path:'funcionarios', //modulo funcionarios , criado função para importar o modulo
+    loadChildren:()=> import('./funcionarios/funcionarios.module').then(m => m.FuncionariosModule) //
+  },
+   depois ir no app componente.html e colocar a tag <router-outlet></router-outlet> --Roteamento funcionando!!!!
+-->
+
+<!-- 
+  criação do App-component.html o mat-toolbar que vai aparecer em todas as páginas, com a barra superior e a lateral 
+-->
+
+<!--passo seguinte listar-funcionario criado div classe container com anside  e main depois foi criado a pasta models e criado o arquivo funcionario.ts(interface) neste arquivo foi inserido os atributos do funcionario  -->
+
+<!--ir em listar-funcionarios.ts criado variavel funcionarios para receber os atributos que foi criado no interface Funcionario e  foi criado o  array colunas para os itens aparecem como colunas , -->
+
+<!-- no component listar funcionarios. html foi criado a tabela com none, email e exluir , apos isso foi criado um servico(pasta) com o comando ng g s  pfuncionarios/pservices/funcionario(serviço) que onde vai ser executado os serviços onde é feito requisição http.Próxima etapa importar HttpClientModule no APP.module.ts para ser utilizado as requisições, ir no funcionario.service e fazer a injeção de dependencia do HttpCliente no constructor
+  
+
+
+  e criado a primeira função de com a requisição para listar todos funcionarios pelo ARRAY -->
+  <!--depois foi em listar-funcionarios.componente.ts  e no construtor foi injetado o serviço criado no   Service ,constructor ( 
+    private funcService: FuncionarioService,  
+    funcService varival criada p receber o serviço criado no Service , depois ir no ngOnit e fazer primeira verificação, depois foram  feitas as funcões até pelo getfuncionariobyid simples depois foi incrementado outras funçoes  -->
+    <!-- no funcionarios.routing.module.ts foi incluida uma sub rota de ListarFuncionariosComponent, incluido o propriedade children e incluido o componente funcionario, com o comando ng g c funcionarios/pages/funcionario foi criado este componente (obrigatório na rota path e nome do componete embaixo)  -->
+
+
+    <!--foi configurado no html do listar funcionarios,a tag a com router link, depos foi no funcionario.componente.ts no construtor e inserido ActivatedRoute, depois realizado a inserção no html do componente funcionario com o mat-card -->
+
+    <!--criação do componente de quando clicar vai abrir um modal para inserir novo funcionario este componente não se trata de página foi utilizado o comando ng g c funcionarios/components/form-funcionario (form-funcionario) dialog ele vai aparecer na página de listar funcionarios-->
+
+    <!--feito a configuração do Firebase aula do 28 aula 2 em enviromentes colar o código do firebase  com angular sem estar rodando instalar pacotes com o comando npm i firebase @angular/fire ir no app.module.ts e importar o fireBase AngularFireModule e AngularFireStorageModule -->
+   
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+    <!--  criação de formulário simples
+      <section>
+    <form >
+        <mat-card-title>Login</mat-card-title>
+        <mat-form-field appearance="fill">
+            <mat-label>E-mail</mat-label>
+            <input type="email" matInput placeholder="Digite seu email">           
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Senha</mat-label>
+            <input type="password" matInput placeholder="Digite sua senha">           
+        </mat-form-field>
+        <button type="button" mat-raised-button>Entregar</button>
+
+    </form>
+
+</section>
+    -->  
+
+
+
+
+
+
+    <!-- criação do interceptor com o comando ng g interceptor interceptors/token feito a função para no intercepto é uma ponte no ANGULAR, o inteceptor de requisição faz a verificação da requisição antes de chegar no servidor barra por alguns segundos o modulo dele tem que ser incluido no app.module na opção :  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true //para que o token interceptor seja executado em todas as requisiçõe
+    }   -->

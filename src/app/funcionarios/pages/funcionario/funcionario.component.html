@@ -1,0 +1,63 @@
+<div class="loader" *ngIf="funcionario == undefined; else principal">
+  <p>{{ naoEncontrado == true ? 'Funcionário não encontrado' : 'Procurando funcionario...' }}</p>
+  <mat-spinner mode="indeterminate" color="primary" *ngIf="naoEncontrado == false"></mat-spinner>
+</div>
+<ng-template #principal> <!--variável de templete-->
+  
+  <mat-card>
+    <mat-card-header>
+      <img [src]="funcionario.foto || '/assets/no-profile.png'" mat-card-avatar>
+      <mat-card-title>{{ funcionario.nome }}</mat-card-title>
+      <mat-card-subtitle>{{ funcionario.email }}</mat-card-subtitle>
+      
+      <button mat-icon-button color="primary" id="menu" [mat-menu-trigger-for]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/funcionarios">
+          <mat-icon>arrow_back</mat-icon>
+          Voltar
+        </button>
+        <button mat-menu-item>
+          <mat-icon>delete</mat-icon>
+          Deletar funcionário
+        </button>
+
+      </mat-menu>
+    </mat-card-header>
+    <mat-card-content>
+      <form action="" [formGroup]="formFuncionario" (ngSubmit)="salvarAtualizacoes()">
+        <img [src]="imagePreview || '/assets/no-profile.png'" id="image-preview">
+
+        <mat-form-field appearance="fill">
+          <mat-label>Nome</mat-label>
+          <input type="text" matInput placeholder="Novo nome" formControlName="nome">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>E-mail</mat-label>
+          <input type="text" matInput placeholder="E-mail" formControlName="email">
+        </mat-form-field>
+
+        <input type="file" id="input-foto" #inputFoto (change)="recuperarFoto($event)" formControlName="foto">
+
+        <button type="button" mat-stroked-button color="primary" (click)="inputFoto.click()">
+          Atualizar imagem
+        </button>
+
+        <button
+          type="submit"
+          mat-raised-button
+          color="accent"
+          id="salvar"
+          [disabled]="desabilitar"
+        >Salvar atualizações</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</ng-template>
+
+<!-- mat card header contem as informações iniciais foto,com a diretiva mat card avatar, funcionario nome. funcionario email, foi inserido a div class loader com o texto Procurando funcionario... 
+diretiva mat-spiner mode=indertemite fica girando -->
+<!-- foi inserido todo o conteudo do mat- card em ng template -->
+<!--na div class foi inserido o ngIf se funcionario == undefined vai ficar apararecendo o loader girando e a frase procurando funcionario em seguida no ng-template foi inserido a váriavel #principal e realizado a condição quando se funcionario = undefine, else (senão ) vai aparecer a estrutura principal -->
